@@ -1,0 +1,53 @@
+{% extends "store/template.html" %}
+{% block title %}<title>TurboSport - Carrito</title>{% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/listar.css' %}">
+
+<div class="container">
+	<h1 class="titulo">Mi Carrito</h1>
+
+	<table class="tabla">
+		<tr>
+		  <th>Producto</th>
+		  <th>Precio</th>
+		  <th>Acciones</th>
+		</tr>
+
+		{% for carrito in carritos %}
+			<tr>
+				<td>{{ carrito.producto }}</td>
+				<td>${{ carrito.precio }}</td>
+				<td class="bloque-iconos" style="width: 5%">
+					<a  class="icontainer" title="Quitar del carrito" href="/carrito/quitar/{{ carrito.id_carrito }}">
+						<i class="fa fa-trash icon trash" aria-hidden="true"></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td class="total-cont">Total</td>
+			<td class="total-cont">${{ precio_total }}</td>
+			<td class="total-cont bloque-iconos">
+				<a  class="icontainer" title="Eliminar Carrito" onclick="confirmacion()">
+					<i class="fa fa-trash icon trash" aria-hidden="true"></i>
+				</a>
+			</td>
+		</tr>
+	</table>
+
+	<form action="{% url 'comprar' %}" class="btn-container">
+	    <input type="submit" value="Comprar" class="btn" />
+	</form>
+</div>
+
+<script type="text/javascript">
+	function confirmacion(){
+		var respuesta = confirm("¿Estás seguro?");
+		if (respuesta == true){
+			window.location.href = "/carrito/eliminar"
+		}
+	}
+</script>
+{% endblock %}

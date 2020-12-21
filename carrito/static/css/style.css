@@ -1,0 +1,277 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica;
+}
+.content{
+	margin: 5% 25% 10% 25%;
+}
+/* Hoja de estilo en cascada para la barra de navegación */
+#navbar {
+  list-style-type     : none;
+  margin              : 0;
+  padding             : 0;
+  overflow            : hidden;
+  background-color    : #111;
+  height              : 127px;
+}
+
+#navbar li {
+  float               : left;
+}
+.categoria{
+    margin            : 25px 50px;
+}
+
+.categoria,
+.contenelogin{
+  display             : block;
+  color               : white;
+  text-align          : center;
+  text-decoration     : none;
+  padding             : 0;
+  -moz-user-select    : none;
+  -webkit-user-select : none;
+  -ms-user-select     : none;
+  user-select         : none;
+}
+
+.contenelogin{
+  margin              : 25px 5px 25px 60%;
+  cursor              : pointer;
+}
+
+.contenelogin h4,
+.contenelogin img{
+  font-size           : 15px;
+  display             : inline-block;
+  vertical-align      : middle;
+}
+
+.contenelogin h4{
+  padding             : 20px 5px;
+  margin              : 0;
+}
+
+.derecha img{
+  text-align          : center;
+  width               : 30px;
+}
+#navbar li a:hover{
+  transform           : scale(1.1);
+}
+
+.logo img{
+  text-align          : center;
+  padding             : 16px;
+  max-width           : 100%;
+  max-height          : 100%;
+  margin              : 0;
+}
+.categoria_icon,
+.cat_texto{
+  display             : inline-block;
+  cursor              : pointer;
+}
+.cat_texto{
+  vertical-align      : middle;
+  padding             : 21.28px 10px;
+  margin              : 0;
+  font-weight         : bold;
+}
+.categoria_icon{
+  vertical-align      : middle;
+}
+.bar1, .bar2, .bar3 {
+  width               : 30px;
+  height              : 3px;
+  background-color    : white;
+  margin              : 6px 0;
+  transition          : 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform   : rotate(-45deg) translate(-4px, 6px); /* Safari */
+  transform           : rotate(-45deg) translate(-4px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform   : rotate(45deg) translate(-7px, -9px);
+  transform           : rotate(45deg) translate(-7px, -9px);
+}
+
+.imagen{
+  height              : 100px;
+}
+
+.cat_container{
+  width               : 24%;
+}
+.derecha{
+  width               : 20%;
+  margin-right: 10px;
+}
+
+/* [Dropdown Profile] */
+
+.dropdown {
+  display             : inline-block;
+}
+.dropdown-content {
+  position            : fixed;
+  top                 : 127px;
+  right               : 0;
+  display             : none;
+  float               : right;
+  background-color    : #111;
+  min-width           : 160px;
+  box-shadow          : 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index             : 200;
+}
+.drop_btn{
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 20px;
+}
+.drop_btn:hover{
+  background-color: #333;
+}
+.show {
+  display             : block;
+}
+
+@media screen and (max-width: 768px){
+  .cat_texto,
+  .contenelogin h4,
+  .busqueda,
+  .search_container button{
+    font-size           : 70%;
+    font-weight         : normal;
+  }
+  .busqueda{
+    padding-right       : 10px;
+  }
+  .contenelogin img{
+    width               : 20%;
+  }
+  .contenelogin{
+    margin              : 25px 5px 25px 0px;
+  }
+}
+
+/* Login Button */
+#login_form p{
+  color: white;
+  margin-left: 5px;
+}
+
+.field{
+  border: solid 1px #ccc;
+  border-radius: 0 4px 4px 0;
+  padding: 9px;
+  width: auto;
+  margin-right: 5px;
+}
+
+.field:focus{
+  border-color: #18A383;
+}
+
+.center-content{
+  text-align: center;
+  margin: 15px 0 0 0;
+}
+
+.field-container div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.field-container i{
+  background-color: #eee;
+  border-radius: 4px 0 0 4px;
+  color: #888;
+  padding: 10px 10px 11px 10px;
+  border: solid 1px #ccc;
+  height: 12px;
+  margin-right: -5px;
+  margin-left: 5px;
+  vertical-align: top;
+}
+.btn{
+  border-radius: 3px;
+  display: inline-block;
+  padding: 8px 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  width: auto;
+}
+
+.btn-black{
+  color: #ddd;
+  background-color: #222;
+}
+.btn-black:hover{
+  background-color: #333;
+  transform           : scale(1.05);
+  text-shadow: none;
+  box-shadow: none;
+}
+.btn-black:active{
+  background-color: #444;
+}
+.bottom_p {
+  color: white;
+  margin-left: 5px;
+  font-size: 12px;
+}
+.bottom_p a:visited {
+  color: #c054ff;
+}
+/* SideNav */
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: absolute; /* Stay stucked */
+  z-index: 1; /* Stay on top */
+  top: 127px; /* Under Navbar */
+  left: 0; /* Left sided */
+  background-color: #333; /* Gray */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+.content {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

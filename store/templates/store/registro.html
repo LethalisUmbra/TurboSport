@@ -1,0 +1,77 @@
+{% extends "./template.html" %}
+{% block title %}<title>TurboSport - Registrar Cliente</title>{% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/register.css' %}?v=<?php echo(rand()); ?>">
+
+<div class="content">
+	{% if user.is_authenticated %}
+		<div>
+			<a href="{% url 'home' %}">Volver al Inicio</a>
+		</div>
+	{% else %}
+		<form method="POST" id="register_form">{% csrf_token %}
+			<div class="container">
+			    <h1>Registro</h1>
+			    <hr>
+					<label for="id_username">Nombre de Usuario:</label>
+					<input type="text" name="username" maxlength="15" minlength="6"  autocapitalize="none" autocomplete="username" autofocus required id="id_username">
+					<span class="helptext">15 carácteres como máximo.</span>
+						<br>
+						<br>
+	                <label for="id_first_name">Nombre:</label>
+	                <input type="text" name="first_name" maxlength="30" minlength="3"  id="id_first_name">
+	                	<br>
+	                	<br>
+	                <label for="id_last_name">Apellidos:</label>
+	                <input type="text" name="last_name" maxlength="150" minlength="3" id="id_last_name">
+	                	<br>
+	                	<br>
+					<label for="id_email">Correo electrónico:</label>
+					<input type="email" name="email" maxlength="254" minlength="5" id="id_email">
+						<br>
+						<br>
+					<label for="id_password1">Contraseña:</label>
+					<div class="cont_input">
+						<input type="password" name="password1" autocomplete="new-password" minlength="8" required id="id_password1">
+						<button type="button" id="eye_cont" tabindex="-1" onclick='passFunction("id_password1")'>
+							<i class="fa fa-eye fa-lg" aria-hidden="true"></i>
+						</button>
+					</div>
+					<span class="helptext">
+						<ul>
+							<li>No puede asemejarse tanto a su otra información personal.</li>
+							<li>Debe contener al menos 8 caracteres.</li>
+							<li>No puede ser completamente numérica</li>
+						</ul>
+					</span>
+							<br>
+					<label for="id_password2">Contraseña (confirmación):</label>
+					<div class="cont_input">
+						<input type="password" name="password2" autocomplete="new-password" minlength="8"  required id="id_password2">
+						<button type="button" id="eye_cont" tabindex="-1" onclick='passFunction("id_password2")'>
+							<i class="fa fa-eye fa-lg" aria-hidden="true"></i>
+						</button>
+					</div>
+						<br>
+					<span class="helptext">Para verificar, introduzca la misma contraseña anterior.</span>
+			    <hr>
+			    <button type="submit" class="registerbtn" name="register_btn">Registrarme</button>
+			</div>
+		</form>
+	{% endif %}
+</div>
+
+<!-- Script para mostrar la contraseña -->
+<script type="text/javascript">
+	function passFunction(campo) {
+	  var x = document.getElementById(campo);
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	}
+</script>
+{% endblock %}

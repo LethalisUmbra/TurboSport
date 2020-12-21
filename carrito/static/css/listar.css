@@ -1,0 +1,77 @@
+.container{
+	width 					: 60%;
+	margin 					: auto;
+	margin-top 				: 100px;
+	-webkit-touch-callout 	: none; /* iOS Safari */
+    -webkit-user-select 	: none; /* Safari */
+    -khtml-user-select 		: none; /* Konqueror HTML */
+    -moz-user-select 		: none; /* Old versions of Firefox */
+    -ms-user-select 		: none; /* Internet Explorer/Edge */
+    user-select 			: none; /* Chrome, Edge, Opera y Firefox */
+}
+.tabla{
+	border-collapse 		: collapse;
+	width 					: 100%;
+}
+td,
+th{
+	border 					: 1px solid #ddd;
+}
+tr:nth-child(even){
+	background-color 		: #f2f2f2;
+}
+tr:hover{
+	background-color 		: #ddd;
+}
+th{
+	padding 				: 12px;
+	text-align 				: left;
+	background-color 		: #333;
+	color 					: white;
+}
+td{
+	padding 				: 10px;
+	cursor 					: default;
+}
+
+.icontainer{
+	text-decoration 		: none;
+	font-size 				: 2em;
+	text-align 				: center;
+	cursor 					: pointer;
+}
+.bloque-iconos{
+	text-align 				:center;
+	padding 				: 0;
+}
+.pen{
+	color 					: green;
+}
+.trash{
+	color 					: #c70e0e;
+}
+.icon{
+	padding 				: 5px;
+}
+.titulo{
+	display 				: inline-block;
+	margin 					: 25px;
+}
+.btn-container{
+	margin 					: 25px;
+	float 					: right;
+	display 				: inline-block;
+}
+.btn{
+	border 					: none;
+	border-radius 			: 5px;
+	background-color 		: #0030ff;
+	color 					: #fff;
+	font-weight 			: bold;
+	cursor 					: pointer;
+	padding 				: 10px;
+}
+.total-cont{
+	background-color 		: #ababab;
+	font-weight 			: bold;
+}

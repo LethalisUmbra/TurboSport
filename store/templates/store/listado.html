@@ -1,0 +1,137 @@
+{% extends "./template.html" %}
+{% block title %}<title>TurboSport - Productos</title>{% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/listado.css' %}?v=<?php echo(rand()); ?>">
+
+<header>
+	TurboSport - Productos
+</header>
+
+<div class="container">
+	<div class="filtro-box">
+		<form method="POST" name="filtro_form">
+			<div class="filtro-container">
+				<button type="button" class="filtro-btn">Categoría <i class="fa fa-caret-down"></i>
+		  		</button>
+		  		<div class="filtro-radio">
+		  			<input type="radio" id="todo" name="categoria" value="todo" class="filtro-content-left" onclick="resetFilt()">
+					<label for="todo" class="filtro-content-right">Todo</label><br>
+		  			{% for categoria in categories %}
+				    <input type="radio" id="{{ categoria }}" name="categoria" value="{{ categoria }}" class="filtro-content-right" onclick="filtCat('{{ categoria }}')">
+					<label for="{{ categoria }}" class="filtro-content-right">{{ categoria }}</label><br>
+					{% endfor %}
+			    </div>
+			</div>
+			<div class="filtro-container">
+				<button type="button" class="filtro-btn">Tipo de producto <i class="fa fa-caret-down"></i>
+		  		</button>
+		  		<div class="filtro-radio">
+		  			<input type="radio" id="todo" name="tipo_producto" value="todo" class="filtro-content-left">
+					<label for="todo" class="filtro-content-right">Todo</label><br>
+		  			{% for tipo_producto in product_type %}
+				    <input type="radio" id="{{ tipo_producto }}" name="tipo_producto" value="{{ tipo_producto }}" class="filtro-content-right" onclick="filtTipo('{{ tipo_producto }}')">
+					<label for="{{ tipo_producto }}" class="filtro-content-right">{{ tipo_producto }}</label><br>
+					{% endfor %}
+			    </div>
+			</div>
+			<div class="filtro-container">
+				<button type="button" class="filtro-btn">Marca <i class="fa fa-caret-down"></i>
+		  		</button>
+		  		<div class="filtro-radio">
+		  			<input type="radio" id="todo" name="marca" value="todo" class="filtro-content-left">
+					<label for="todo" class="filtro-content-right">Todo</label><br>
+		  			{% for marca in brand %}
+				    <input type="radio" id="{{ marca }}" name="marca" value="{{ marca }}" class="filtro-content-right" onclick="filtMarca('{{ marca }}')">
+					<label for="{{ marca }}" class="filtro-content-right">{{ marca }}</label><br>
+					{% endfor %}
+			    </div>
+			</div>
+			<div class="filtro-container">
+				<button type="button" class="filtro-btn">Talla <i class="fa fa-caret-down"></i>
+		  		</button>
+		  		<div class="filtro-radio">
+		  			<input type="radio" id="todo" name="talla" value="todo" class="filtro-content-left">
+					<label for="todo" class="filtro-content-right">Todo</label><br>
+		  			{% for talla in size %}
+				    <input type="radio" id="{{ talla }}" name="talla" value="{{ talla }}" class="filtro-content-right" onclick="filtTalla('{{ talla }}')">
+					<label for="{{ talla }}" class="filtro-content-right">{{ talla }}</label><br>
+					{% endfor %}
+			    </div>
+			</div>
+			<div class="filtro-container">
+				<button type="button" class="filtro-btn">Color <i class="fa fa-caret-down"></i>
+		  		</button>
+		  		<div class="filtro-radio">
+		  			<input type="radio" id="todo" name="color" value="todo" class="filtro-content-left">
+					<label for="todo" class="filtro-content-right">Todo</label><br>
+		  			{% for color in colour %}
+				    <input type="radio" id="{{ color }}" name="color" value="{{ color }}" class="filtro-content-right" onclick="filtColor('{{ color }}')">
+					<label for="{{ color }}" class="filtro-content-right">{{ color }}</label><br>
+					{% endfor %}
+			    </div>
+			</div>
+		</form>
+	</div>
+
+	<div class="content">
+		{% for product in products %}
+		<div class="product-box">
+			<a href="/productos/{{ product.id_producto }}" style="text-decoration: none; color: #555;">
+				<div class="img-box">
+					<img src="{{ product.imagen.url }}" alt="{{ product.imagen.url }}"/>
+				</div>
+			    <p class="product-name"> {{ product.nombre }}</p>
+		        <p class="product-price">${{ product.precio }}</p>
+			</a>
+
+	    </div>
+	    {% endfor %}
+	</div>
+</div>
+
+<script>
+
+	function filtCat(selectedCat){
+		cat = selectedCat
+		window.location.href = "/productos/categoria/"+cat
+	}
+
+	function filtTipo(selectedCat){
+		cat = selectedCat
+		window.location.href = "/productos/tipo/"+cat
+	}
+	function filtMarca(selectedCat){
+		cat = selectedCat
+		window.location.href = "/productos/marca/"+cat
+	}
+	function filtTalla(selectedCat){
+		cat = selectedCat
+		window.location.href = "/productos/talla/"+cat
+	}
+	function filtColor(selectedCat){
+		cat = selectedCat
+		window.location.href = "/productos/color/"+cat
+	}
+	function resetFilt(){
+		window.location.href = "/"
+	}
+
+	var dropdown = document.getElementsByClassName("filtro-btn");
+	var i;
+
+	for (i = 0; i < dropdown.length; i++) {
+	  dropdown[i].addEventListener("click", function() {
+	  this.classList.toggle("active");
+	  var dropdownContent = this.nextElementSibling;
+	  if (dropdownContent.style.display === "block") {
+	  dropdownContent.style.display = "none";
+	  } else {
+	  dropdownContent.style.display = "block";
+	  }
+	  });
+	}
+</script>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "./template.html" %}
+{% block title %}<title>TurboSport - Perfil</title>{% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}?v=<?php echo(rand()); ?>">
+
+<div class="container">
+	{% if user.is_authenticated %}
+		<div class="top-side">
+			<div class="profile-name">
+				{{ user.first_name }} {{ user.last_name }}
+			</div>
+			<div class="edit-btn">
+				<button type="button" onclick="toggleUpdate(); defaultValues();">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				</button>
+			</div>
+		</div>
+		<div class="pc" id="contenido">
+			<div class="ptc">
+				<p class="pt ptl">Nombre de Usuario: </p>
+				<p class="pt ptr"> {{ user.username }}</p>
+			</div>
+			<div class="ptc">
+				<p class="pt ptl">Nombre: </p>
+				<p class="pt ptr"> {{ user.first_name }}</p>
+			</div>
+			<div class="ptc">
+				<p class="pt ptl">Apellido(s): </p>
+				<p class="pt ptr"> {{ user.last_name }}</p>
+			</div>
+			<div class="ptc">
+				<p class="pt ptl">Correo Electrónico: </p>
+				<p class="pt ptr"> {{ user.email }}</p>
+			</div>
+		</div>
+		<form method="POST" id="update_form">{% csrf_token %}
+			<div class="modificar pc" id="modificar">
+				<label>Nombre de Usuario:</label>
+				<p>{{ user.username}}</p>
+					<br>
+				<label for="id_first_name">Nombre:</label>
+                <input type="text" name="first_name" maxlength="30" id="id_first_name">
+                	<br>
+                <label for="id_last_name">Apellido(s):</label>
+                <input type="text" name="last_name" maxlength="150" id="id_last_name">
+                	<br>
+				<label for="id_email">Correo Electrónico:</label>
+				<input type="email" name="email" maxlength="254" id="id_email">
+					<br>
+				<div class="btn-container">
+					<button type="submit" name="update_btn" class="update_btn">Modificar</button>
+					<button type="button" class="update_btn ua" onclick="confirmacion()">Eliminar</button>
+				</div>
+			</div>
+		</form>
+	{% else %}
+		<div>
+			<a href="{% url 'home' %}">Volver al Inicio</a>
+		</div>
+	{% endif %}
+</div>
+
+<script type="text/javascript">
+	var updateOpen = false // Cerrado
+	function toggleUpdate(){
+	    if(updateOpen === false){
+	    	updateOpen = true;
+	    	document.getElementById("modificar").style.display = "block";
+	    	document.getElementById("contenido").style.display = "none";
+	    }
+	    else{
+	    	updateOpen = false;
+	    	document.getElementById("modificar").style.display = "none";
+	    	document.getElementById("contenido").style.display = "block";
+	    }
+	}
+
+	function defaultValues(){
+		document.getElementById("id_first_name").defaultValue = "{{user.first_name}}";
+		document.getElementById("id_last_name").defaultValue = "{{user.last_name}}";
+		document.getElementById("id_email").defaultValue = "{{user.email}}";
+	}
+
+	function confirmacion(){
+		var respuesta = confirm("¿Estás seguro?");
+		if (respuesta == true){
+			window.location.href = "http://127.0.0.1:8000/delete"
+		}
+	}
+</script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "./template.html" %}
+{% block title %}<title>TurboSport - {{ producto.nombre }}</title>{% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/producto.css' %}?v=<?php echo(rand()); ?>">
+
+<div class="container">
+	<div class="top-content">
+		<div class="top-name">
+			{{producto.nombre}}
+		</div>
+	</div>
+	<div class="mid-content">
+		<div class="image-content">
+			<img src="{{producto.imagen.url}}">
+		</div>
+		<div class="desc">
+			<div class="desc-title-cont">
+				<p class="d-title">Categoría:</p>
+				<p class="d-title">Tipo de Producto:</p>
+				<p class="d-title">Marca:</p>
+				<p class="d-title">Precio:</p>
+				<p class="d-title">Talla:</p>
+				<p class="d-title">Color:</p>
+			</div>
+			<div class="desc-response-cont">
+				<p class="d-response">{{producto.categoria}}</p>
+				<p class="d-response">{{producto.tipo_producto}}</p>
+				<p class="d-response">{{producto.marca}}</p>
+				<p class="d-response">${{producto.precio}}</p>
+				<p class="d-response">{{producto.talla}}</p>
+				<p class="d-response">{{producto.color}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="bot-content">
+		<div class="bot-clasificacion">
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+		</div>
+		<form method="POST" id="carrito_form">
+			<a  class="icontainer" title="Comprar" href="/productos/comprar/{{ producto.id_producto }}" name="comprar_btn">
+				<i class="fa fa-cart-plus" aria-hidden="true"></i>
+			</a>
+		</form>
+		<div class="bot-descripcion">
+			<div class="bot-desc-cont">
+			<p class="b-desc">Descripcion:</p>
+		</div>
+		<div class="bot-desc-resp">
+			<p class="desc-resp">{{producto.descripcion}}</p>
+		</div>
+		</div>
+
+	</div>
+</div>
+
+<script>
+	var dropdown = document.getElementsByClassName("filtro-btn");
+	var i;
+
+	for (i = 0; i < dropdown.length; i++) {
+	  dropdown[i].addEventListener("click", function() {
+	  this.classList.toggle("active");
+	  var dropdownContent = this.nextElementSibling;
+	  if (dropdownContent.style.display === "block") {
+	  dropdownContent.style.display = "none";
+	  } else {
+	  dropdownContent.style.display = "block";
+	  }
+	  });
+	}
+</script>
+
+{% endblock %}

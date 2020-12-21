@@ -1,0 +1,28 @@
+{% extends "./template.html" %}
+{% block title %}<title>TurboSport - Perfil</title>{% endblock %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}?v=<?php echo(rand()); ?>">
+
+<div class="container">
+	{% if user.is_authenticated %}
+		<div class="top-side">
+			<div class="profile-name">
+				{{ user.first_name }} {{ user.last_name }}
+			</div>
+			<div class="edit-btn">
+				<button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+			</div>
+		</div>
+		<div class="pc">
+			{{ form.as_p }}
+		</div>
+	{% else %}
+		<div>
+			<a href="{% url 'home' %}">Volver al Inicio</a>
+		</div>
+	{% endif %}
+</div>
+
+{% endblock %}
